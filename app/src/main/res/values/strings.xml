@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">MyUMKM</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="my_umkm">My UMKM</string>
+
+    <string name="signup">Sign Up</string>
+    <string name="login">Login</string>
+    <string name="name">Masukkan nama</string>
+    <string name="email">Masukkan email</string>
+    <string name="password">Masukkan Password</string>
+    <string name="repassword">Masukkan ulang Password</string>
+    <string name="forgot_password">Lupa kata sandi?</string>
+    <string name="signupacc">Buat akun</string>
+
+    <string name="google">Masuk dengan Google</string>
+    <string name="default_web_client_id">null</string>
 </resources>
