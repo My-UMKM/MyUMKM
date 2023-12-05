@@ -55,6 +55,7 @@ dependencies {
 
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
+
     implementation("com.firebaseui:firebase-ui-firestore:7.2.0")
 
     implementation("androidx.paging:paging-runtime-ktx:3.2.1")
