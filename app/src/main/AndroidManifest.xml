@@ -16,11 +16,10 @@
         <activity
             android:name=".ui.SplashScreen"
             android:exported="true">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".ui.LandingActivity"
@@ -29,9 +28,11 @@
             android:theme="@style/Theme.MyUMKM" />
         <activity
             android:name=".ui.chat.ChatActivity"
+            android:parentActivityName=".ui.section.SectionActivity"
             android:exported="false" />
         <activity
             android:name=".ui.section.SectionActivity"
+            android:parentActivityName=".ui.main.MainActivity"
             android:exported="false" />
         <activity
             android:name=".ui.signup.SignupActivity"
@@ -41,7 +42,8 @@
             android:exported="false" />
         <activity
             android:name=".ui.main.MainActivity"
-            android:exported="true">
+            android:exported="false"
+            >
         </activity>
     </application>
 

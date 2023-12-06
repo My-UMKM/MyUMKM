@@ -15,6 +15,11 @@ class MainViewModel(private val accountRepository: AccountRepository): ViewModel
         accountRepository.getSession { _user.value = it }
     }
 
+    fun logout() {
+        accountRepository.logout{}
+        getSession()
+    }
+
     init {
         getSession()
     }

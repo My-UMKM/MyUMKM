@@ -39,6 +39,9 @@ class MainActivity : AppCompatActivity() {
         binding.btnChatbot.setOnClickListener {
             startActivity(Intent(this@MainActivity, SectionActivity::class.java))
         }
+        binding.fabLogout.setOnClickListener {
+            viewModel.logout()
+        }
     }
 
 }
