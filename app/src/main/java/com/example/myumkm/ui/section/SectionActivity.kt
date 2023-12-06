@@ -3,6 +3,7 @@ package com.example.myumkm.ui.section
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.app.NavUtils
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myumkm.data.entity.SectionEntity
@@ -42,6 +43,11 @@ class SectionActivity : AppCompatActivity() {
     override fun onStop() {
         super.onStop()
         adapter.stopListening()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        NavUtils.navigateUpFromSameTask(this)
     }
 
     companion object {
