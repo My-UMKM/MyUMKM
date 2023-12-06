@@ -132,7 +132,6 @@ class AccountRepository(
             .addOnCompleteListener {
                 if (it.isSuccessful){
                     val user = it.result.toObject(UserEntity::class.java)
-                    val userString = user.toString()
                     appPreferences.edit().putString(SharedPrefConstants.USER_SESSION,gson.toJson(user)).apply()
                     result.invoke(user)
                 }else{

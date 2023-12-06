@@ -6,13 +6,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myumkm.data.entity.ChatEntity
 import com.example.myumkm.data.entity.SectionEntity
+import com.example.myumkm.data.entity.UserEntity
 import com.example.myumkm.data.repository.interf.IAccountRepository
 import com.example.myumkm.data.repository.interf.IChatRepository
 import com.example.myumkm.data.repository.interf.ISectionRepository
 import com.example.myumkm.util.ResultState
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 
-class ChatViewModel(private val iChatRepository: IChatRepository, private val iAccountRepository: IAccountRepository, private val iSectionRepository: ISectionRepository, sectionIdParam: String?) : ViewModel() {
+class ChatViewModel(val iChatRepository: IChatRepository, private val iSectionRepository: ISectionRepository,
+                    val user: UserEntity,private val sectionIdParam: String?) : ViewModel() {
     private val _insertChat = MutableLiveData<ResultState<String>>()
     val insertChat: LiveData<ResultState<String>>
         get() = _insertChat
@@ -43,13 +45,5 @@ class ChatViewModel(private val iChatRepository: IChatRepository, private val iA
     fun insertSection(sectionEntity: SectionEntity) {
         _insertSection.value = ResultState.Loading
         iSectionRepository.insertSection(sectionEntity) { _insertSection.value = it }
-    }
-
-    var userId: String? = null
-
-    init {
-        iAccountRepository.getSession { userEntity ->
-            userId = userEntity?.id
-        }
     }
 }

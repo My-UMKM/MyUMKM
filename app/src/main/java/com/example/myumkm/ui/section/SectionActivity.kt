@@ -5,9 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.myumkm.R
+import com.example.myumkm.data.entity.SectionEntity
 import com.example.myumkm.databinding.ActivitySectionBinding
 import com.example.myumkm.ui.chat.ChatActivity
+import com.firebase.ui.firestore.FirestoreRecyclerOptions
 
 class SectionActivity : AppCompatActivity() {
 
@@ -16,17 +17,31 @@ class SectionActivity : AppCompatActivity() {
     private lateinit var viewModel: SectionViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_section)
+        binding = ActivitySectionBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         viewModel = ViewModelProvider(this, SectionViewModelFactory.getInstance(this))[SectionViewModel::class.java]
-        adapter = SectionAdapter(viewModel.sectionsOptions)
-        binding.rvSection.layoutManager = LinearLayoutManager(this)
+        val options = FirestoreRecyclerOptions.Builder<SectionEntity>()
+            .setQuery(viewModel.iSectionRepository.getSections(viewModel.user.id), SectionEntity::class.java)
+            .build()
+        adapter = SectionAdapter(options)
         binding.rvSection.adapter = adapter
+        binding.rvSection.layoutManager = LinearLayoutManager(this)
 
         binding.itemSection.imgBtnSection.setOnClickListener {
             val intent = Intent(this, ChatActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        adapter.startListening()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        adapter.stopListening()
     }
 
     companion object {

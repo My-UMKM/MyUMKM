@@ -12,6 +12,7 @@ class SectionRepository(
     override fun getSections(userId: String): Query {
         return firebaseFirestore.collection(SECTION_COLLECTION)
             .whereEqualTo(USER_ID_FIELD, userId)
+            .limit(50)
     }
     override fun insertSection(sectionEntity: SectionEntity, result: (ResultState<String>) -> Unit) {
         firebaseFirestore.collection(SECTION_COLLECTION)
@@ -32,7 +33,7 @@ class SectionRepository(
 
     companion object {
         private const val USER_ID_FIELD = "userId"
-        const val SECTION_ID_FIELD = "sectionId"
+        const val SECTION_ID_FIELD = "id"
         private const val SECTION_COLLECTION = "sections"
 
         @Volatile
