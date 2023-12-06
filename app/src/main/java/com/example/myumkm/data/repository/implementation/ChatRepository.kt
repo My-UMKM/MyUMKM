@@ -13,7 +13,9 @@ class ChatRepository(
 
     override fun getChats(sectionId: String?): Query {
         return firebaseFirestore.collection(CHAT_COLLECTION)
-                .whereEqualTo(SECTION_ID_FIELD, sectionId)
+            .whereEqualTo(SECTION_ID_FIELD, sectionId)
+            .limit(50)
+            .orderBy(CHAT_TIMESTAMP)
     }
 
     override fun insertChat(chatEntity: ChatEntity, result: (ResultState<String>) -> Unit) {
@@ -34,7 +36,7 @@ class ChatRepository(
     }
 
     override fun updateChat(chatEntity: ChatEntity, result: (ResultState<String>) -> Unit) {
-        val document = firebaseFirestore.collection(CHAT_COLLECTION).document(chatEntity.chatId!!)
+        val document = firebaseFirestore.collection(CHAT_COLLECTION).document(chatEntity.id!!)
         document
             .set(chatEntity)
             .addOnSuccessListener {
@@ -53,7 +55,8 @@ class ChatRepository(
 
     companion object {
         private const val CHAT_COLLECTION = "chats"
-
+        const val SECTION_ID_FIELD = "sectionId"
+        const val CHAT_TIMESTAMP = "chatTimestamp"
         @Volatile
         private var instance: ChatRepository? = null
         fun getInstance(

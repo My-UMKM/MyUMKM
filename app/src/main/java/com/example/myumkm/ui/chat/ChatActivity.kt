@@ -1,19 +1,16 @@
 package com.example.myumkm.ui.chat
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.IntentCompat
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.myumkm.R
 import com.example.myumkm.data.entity.ChatEntity
 import com.example.myumkm.data.entity.SectionEntity
 import com.example.myumkm.databinding.ActivityChatBinding
 import com.example.myumkm.ui.section.SectionActivity.Companion.SECTION
-import kotlinx.coroutines.launch
+import com.example.myumkm.util.toast
+import com.firebase.ui.firestore.FirestoreRecyclerOptions
 
 class ChatActivity : AppCompatActivity() {
 
@@ -26,23 +23,21 @@ class ChatActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val section = IntentCompat.getParcelableExtra(intent, SECTION, SectionEntity::class.java)
-        val sectionId = section?.sectionId
+
+        val sectionId = section?.id
         viewModel = ViewModelProvider(this, ChatViewModelFactory.getInstance(this, sectionId))[ChatViewModel::class.java]
         if (section != null) {
-            viewModel.sectionId.postValue(section.sectionId)
+            viewModel.sectionId.postValue(section.id)
         }
-        adapter = ChatAdapter(viewModel.chatsOptions, viewModel.userId) {
+
+        val options = FirestoreRecyclerOptions.Builder<ChatEntity>()
+            .setQuery(viewModel.iChatRepository.getChats(viewModel.sectionId.value), ChatEntity::class.java)
+            .build()
+        adapter = ChatAdapter(options, viewModel.user.name) {
             binding.rvChat.scrollToPosition(adapter.itemCount - 1)
         }
         binding.rvChat.layoutManager = LinearLayoutManager(this)
         binding.rvChat.adapter = adapter
-
-//        lifecycleScope.launch {
-//            viewModel.chats.collectLatest { pagingData ->
-//                adapter.submitData(pagingData)
-//                binding.rvChat.scrollToPosition(adapter.itemCount - 1)
-//            }
-//        }
 
         binding.sendButton.setOnClickListener {
             val message = ChatEntity(
@@ -79,5 +74,15 @@ class ChatActivity : AppCompatActivity() {
 //
 //            }, 2000)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        adapter.startListening()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        adapter.stopListening()
     }
 }

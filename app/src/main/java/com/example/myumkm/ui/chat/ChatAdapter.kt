@@ -39,8 +39,7 @@ class ChatAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int, model: ChatEntity) {
-        val chat = getItem(position)
-        holder.bind(chat!!, position == itemCount - 1 && isLastItemTyping, currentUserName)
+        holder.bind(model, position == itemCount - 1 && isLastItemTyping, currentUserName)
     }
 
     class ViewHolder(private val binding: ItemMessageBinding) : RecyclerView.ViewHolder(binding.root) {

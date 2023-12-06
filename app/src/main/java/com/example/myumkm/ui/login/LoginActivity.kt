@@ -1,4 +1,4 @@
-package com.example.myumkm
+package com.example.myumkm.ui.login
 
 import android.app.Activity
 import android.content.Intent
@@ -6,10 +6,17 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
+import com.example.myumkm.R
 import com.example.myumkm.databinding.ActivityLoginBinding
+import com.example.myumkm.ui.ViewModelFactory
+import com.example.myumkm.ui.section.SectionActivity
+import com.example.myumkm.ui.signup.SignupActivity
+import com.example.myumkm.util.ResultState
+import com.example.myumkm.util.isValidEmail
+import com.example.myumkm.util.toast
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -27,40 +34,45 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var auth: FirebaseAuth
+    private lateinit var viewModel: LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val signInButton = binding.signInButton
-        setGooglePlusButtonText(signInButton, getString(R.string.google))
+        viewModel = ViewModelProvider(this, ViewModelFactory.getInstance(this))[LoginViewModel::class.java]
+
+        setGooglePlusButtonText(binding.signInButton, getString(R.string.google))
 
 
         auth = FirebaseAuth.getInstance()
-        binding.loginButton.setOnClickListener {
-            val email = binding.emailEditText.text.toString()
-            val password = binding.passwordEditText.text.toString()
 
-            showLoading(true)
-
-            if (email.isNotEmpty() && password.isNotEmpty()) {
-                auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
-                    showLoading(false)
-                    if (task.isSuccessful) {
-                        val user = auth.currentUser
-                        updateUI(user)
-                    } else {
-                        Log.e("LoginActivity", "Message: ${task.exception}")
-                        Toast.makeText(this@LoginActivity, "Terjadi kesalahan saat login", Toast.LENGTH_SHORT).show()
-                    }
+        viewModel.login.observe(this) { state ->
+            when(state){
+                is ResultState.Loading -> {
+                    showLoading(true)
                 }
-            } else {
-                Toast.makeText(this@LoginActivity, "Kolom tidak boleh kosong", Toast.LENGTH_SHORT).show()
+                is ResultState.Error -> {
+                    showLoading(false)
+                    toast(state.error)
+                }
+                is ResultState.Success -> {
+                    showLoading(false)
+                    toast(state.data)
+                    updateUI(auth.currentUser)
+                }
             }
         }
 
-
+        binding.loginButton.setOnClickListener {
+            if (validation()) {
+                viewModel.login(
+                    email = binding.emailEditText.text.toString(),
+                    password = binding.passwordEditText.text.toString()
+                )
+            }
+        }
 
         val gso = GoogleSignInOptions
             .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -135,7 +147,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun updateUI(currentUser: FirebaseUser?) {
         if (currentUser != null){
-            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+            startActivity(Intent(this@LoginActivity, SectionActivity::class.java))
             finish()
         }
     }
@@ -144,6 +156,29 @@ class LoginActivity : AppCompatActivity() {
         super.onStart()
         val currentUser = auth.currentUser
         updateUI(currentUser)
+    }
+
+    private fun validation(): Boolean {
+        var isValid = true
+        if(binding.emailEditText.text.isNullOrEmpty()) {
+            isValid = false
+            toast("Please input the email")
+        } else {
+            if (!binding.emailEditText.text.toString().isValidEmail()){
+                isValid = false
+                toast("Email invalid")
+            }
+        }
+        if (binding.passwordEditText.text.isNullOrEmpty()){
+            isValid = false
+            toast("Please input the password")
+        }else{
+            if (binding.passwordEditText.text.toString().length < 8){
+                isValid = false
+                toast("Password length minim 8 characters")
+            }
+        }
+        return isValid
     }
 
     companion object {

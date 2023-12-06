@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class SectionEntity (
-    val sectionId: String? = null,
-    val sectionName: String,
-    val userId: String
+    var id: String? = null,
+    val sectionName: String? = null,
+    val userId: String? = null
 ): Parcelable

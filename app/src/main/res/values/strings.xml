@@ -14,4 +14,8 @@
 
     <string name="google">Masuk dengan Google</string>
     <string name="default_web_client_id">null</string>
+
+<!--  home page -->
+    <string name="welcome">Halo,</string>
+    <string name="chatbot_button">ChatBot</string>
 </resources>

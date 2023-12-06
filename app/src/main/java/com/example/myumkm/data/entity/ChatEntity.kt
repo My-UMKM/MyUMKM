@@ -1,11 +1,11 @@
 package com.example.myumkm.data.entity
 
 data class ChatEntity(
-    val chatId: String? = null,
-    val chatContent: String,
-    val chatTimestamp: Long,
-    val chatResponse: String?,
-    val chatbotTimestamp: Long?,
-    val isBotTyping: Boolean = false,
-    val sectionId: String?
+    var id: String? = null,
+    val chatContent: String? = null,
+    val chatTimestamp: Long? = null,
+    val chatResponse: String? = null,
+    val chatbotTimestamp: Long? = null,
+    val isBotTyping: Boolean? = null,
+    val sectionId: String? = null
 )
