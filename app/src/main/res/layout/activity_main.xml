@@ -7,6 +7,34 @@
     android:background="@color/primary"
     tools:context=".ui.main.MainActivity">
 
+    <View
+        android:id="@+id/ellipse1"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentTop="false"
+        android:layout_marginTop="-140dp"
+        android:layout_marginEnd="80dp"
+        android:alpha="0.2"
+        android:background="@drawable/circle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <View
+        android:id="@+id/ellipse2"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="228dp"
+        android:layout_marginTop="-90dp"
+        android:alpha="0.2"
+        android:background="@drawable/circle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
     <TextView
         android:id="@+id/tvWelcome"
         android:layout_width="0dp"
@@ -26,7 +54,7 @@
         android:id="@+id/fabLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/background_one"
+        android:backgroundTint="@color/primary"
         android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -84,13 +112,14 @@
     <Button
         android:id="@+id/btnChatbot"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_marginStart="48dp"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="48dp"
-        android:background="@drawable/rounded_button"
         android:drawableLeft="@drawable/baseline_message_24"
         android:text="@string/chatbot_button"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/navy"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />

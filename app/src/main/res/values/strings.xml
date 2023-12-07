@@ -10,7 +10,10 @@
     <string name="password">Masukkan Password</string>
     <string name="repassword">Masukkan ulang Password</string>
     <string name="forgot_password">Lupa kata sandi?</string>
-    <string name="signupacc">Buat akun</string>
+    <string name="sign_signupacc">Belum memiliki akun?</string>
+    <string name="signup_acc">Buat akun</string>
+    <string name="sign_loginacc">Sudah memiliki akun?</string>
+    <string name="login_acc">Masuk</string>
 
     <string name="google">Masuk dengan Google</string>
     <string name="default_web_client_id">null</string>
@@ -63,6 +66,6 @@
     </string>
 
 
-    <string name="landing"> Mulai perjalanan suksesmu bersama kami! </string>
+    <string name="landing"> MyUMKM, teman setia para pelaku UMKM. \nJelajahi potensi Anda bersama MyUMKM. \n Awali kesuksesanmu bersama kami! </string>
     <string name="start"> Mulai sekarang! </string>
 </resources>

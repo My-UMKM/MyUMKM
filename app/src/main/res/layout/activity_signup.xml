@@ -12,8 +12,8 @@
         android:id="@+id/personImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="34dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="-8dp"
         android:src="@drawable/baseline_person"
         app:layout_constraintStart_toEndOf="@+id/login"
         app:layout_constraintTop_toTopOf="parent" />
@@ -139,6 +139,7 @@
         android:layout_marginEnd="32dp"
         android:backgroundTint="@color/navy"
         android:text="@string/signup"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -208,6 +209,32 @@
             android:inputType="textPassword"
             tools:ignore="SpeakableTextPresentCheck" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/loginText"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="78dp"
+        android:layout_marginTop="70dp"
+        android:gravity="center"
+        android:text="@string/sign_loginacc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/signupButton" />
+
+    <TextView
+        android:id="@+id/loginAccount"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="-20dp"
+        android:layout_marginTop="70dp"
+        android:gravity="center"
+        android:text="@string/login_acc"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.709"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/signupButton"/>
+
 
     <ProgressBar
         android:id="@+id/progressBar"

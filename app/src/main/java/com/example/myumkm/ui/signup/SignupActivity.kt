@@ -9,6 +9,7 @@ import com.example.myumkm.data.entity.UserEntity
 import com.example.myumkm.ui.main.MainActivity
 import com.example.myumkm.databinding.ActivitySignupBinding
 import com.example.myumkm.ui.ViewModelFactory
+import com.example.myumkm.ui.login.LoginActivity
 import com.example.myumkm.util.ResultState
 import com.example.myumkm.util.isValidEmail
 import com.example.myumkm.util.toast
@@ -51,6 +52,11 @@ class SignupActivity : AppCompatActivity() {
                     getUserEntity()
                 )
             }
+        }
+
+        binding.loginAccount.setOnClickListener{
+            val intentSignup = Intent(this@SignupActivity, LoginActivity::class.java)
+            startActivity(intentSignup)
         }
     }
 
