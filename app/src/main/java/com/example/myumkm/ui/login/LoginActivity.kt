@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.myumkm.R
 import com.example.myumkm.databinding.ActivityLoginBinding
 import com.example.myumkm.ui.ViewModelFactory
+import com.example.myumkm.ui.main.MainActivity
 import com.example.myumkm.ui.section.SectionActivity
 import com.example.myumkm.ui.signup.SignupActivity
 import com.example.myumkm.util.ResultState
@@ -147,7 +148,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun updateUI(currentUser: FirebaseUser?) {
         if (currentUser != null){
-            startActivity(Intent(this@LoginActivity, SectionActivity::class.java))
+            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
             finish()
         }
     }
