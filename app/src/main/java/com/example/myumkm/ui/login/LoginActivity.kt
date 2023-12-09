@@ -13,7 +13,6 @@ import com.example.myumkm.R
 import com.example.myumkm.databinding.ActivityLoginBinding
 import com.example.myumkm.ui.ViewModelFactory
 import com.example.myumkm.ui.main.MainActivity
-import com.example.myumkm.ui.section.SectionActivity
 import com.example.myumkm.ui.signup.SignupActivity
 import com.example.myumkm.util.ResultState
 import com.example.myumkm.util.isValidEmail

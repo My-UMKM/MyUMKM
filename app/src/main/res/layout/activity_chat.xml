@@ -16,9 +16,11 @@
         android:layout_weight="1"
         android:background="@color/third"
         android:hint="Say something..."
+        android:textColor="@color/white"
         android:inputType="text"
         android:minHeight="48dp"
         android:padding="10dp"
+        android:clipToOutline="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/sendButton"
         app:layout_constraintStart_toStartOf="parent" />
@@ -35,8 +37,10 @@
 
     <Button
         android:id="@+id/sendButton"
-        android:layout_width="wrap_content"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="@color/navy"
         app:icon="@drawable/outline_send_24"
         app:layout_constraintBottom_toBottomOf="@+id/messageEditText"
         app:layout_constraintEnd_toEndOf="parent"
