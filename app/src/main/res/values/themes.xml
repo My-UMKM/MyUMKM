@@ -8,4 +8,8 @@
     </style>
 
     <style name="Theme.MyUMKM" parent="Base.Theme.MyUMKM" />
+
+    <style name="Theme.MyUMKM.NewTheme" parent="Base.Theme.MyUMKM">
+        <item name="colorPrimary">@color/navy</item> <!-- Override colorPrimary here -->
+    </style>
 </resources>

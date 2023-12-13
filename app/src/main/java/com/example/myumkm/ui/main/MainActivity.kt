@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.example.myumkm.databinding.ActivityMainBinding
 import com.example.myumkm.ui.ViewModelFactory
+import com.example.myumkm.ui.legal.LegalActivity
 import com.example.myumkm.ui.login.LoginActivity
 import com.example.myumkm.ui.section.SectionActivity
 
@@ -42,6 +43,14 @@ class MainActivity : AppCompatActivity() {
         binding.fabLogout.setOnClickListener {
             viewModel.logout()
         }
+        binding.btnFaq.setOnClickListener {
+            startActivity(Intent(this@MainActivity, SectionActivity::class.java))
+        }
+        binding.btnLegalitas.setOnClickListener {
+            startActivity(Intent(this@MainActivity, LegalActivity::class.java))
+        }
+        binding.btnScanner.setOnClickListener {
+            startActivity(Intent(this@MainActivity, SectionActivity::class.java))
+        }
     }
-
 }

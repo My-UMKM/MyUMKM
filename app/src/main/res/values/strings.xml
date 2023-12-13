@@ -18,7 +18,7 @@
     <string name="google">Masuk dengan Google</string>
     <string name="default_web_client_id">null</string>
 
-<!--  home page -->
+    <!--  home page -->
     <string name="welcome">Halo,</string>
     <string name="chatbot_button">ChatBot</string>
     <string name="title_activity_landing">LandingActivity</string>
@@ -68,4 +68,19 @@
 
     <string name="landing"> MyUMKM, teman setia para pelaku UMKM. \nJelajahi potensi Anda bersama MyUMKM. \n Awali kesuksesanmu bersama kami! </string>
     <string name="start"> Mulai sekarang! </string>
+
+    <!--    Button Main Activity-->
+    <string name="cek">Cek</string>
+    <string name="legalitas">Legalitas</string>
+    <string name="produkmu">Produkmu!</string>
+    <string name="scanner">Scanner Uang</string>
+    <string name="faq">UMKM FAQ</string>
+    <string name="title_activity_legal">LegalActivity</string>
+
+<!--    This just usenow-->
+    <string name="camera_x">CameraX</string>
+    <string name="camera">Kamera</string>
+    <string name="gallery">Galeri</string>
+    <string name="upload">Unggah</string>
+    <string name="empty_image_warning">Silakan masukkan berkas gambar terlebih dahulu.</string>
 </resources>
