@@ -160,8 +160,8 @@
             android:textStyle="bold" />
 
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_gravity="center"
             android:src="@drawable/cash" />
     </LinearLayout>
@@ -190,12 +190,39 @@
             android:textStyle="bold" />
 
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_gravity="center"
-            android:src="@drawable/cash"
-            app:srcCompat="@drawable/open_book" />
+            android:src="@drawable/open_book" />
     </LinearLayout>
+
+    <View
+        android:id="@+id/ellipse3"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentTop="false"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="-150dp"
+        android:alpha="0.2"
+        android:background="@drawable/circle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <View
+        android:id="@+id/ellipse4"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="228dp"
+        android:layout_marginBottom="-120dp"
+        android:alpha="0.2"
+        android:background="@drawable/circle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/btnLegalitas"
@@ -211,17 +238,21 @@
             android:id="@+id/imageView2"
             android:layout_width="37dp"
             android:layout_height="26dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="4dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cek"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.074"
             app:srcCompat="@drawable/law_court" />
 
         <TextView
             android:id="@+id/cek"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="14dp"
             android:layout_marginTop="16dp"
             android:text="@string/cek"
             android:textColor="@color/white"
@@ -234,7 +265,7 @@
             android:id="@+id/legalitas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="14dp"
             android:layout_marginTop="4dp"
             android:text="@string/legalitas"
             android:textColor="@color/white"
@@ -247,7 +278,7 @@
             android:id="@+id/produkmu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="14dp"
             android:layout_marginTop="4dp"
             android:text="@string/produkmu"
             android:textColor="@color/white"
@@ -256,7 +287,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/legalitas" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
