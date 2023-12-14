@@ -15,17 +15,13 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import com.example.myumkm.databinding.ActivityLegalBinding
 import com.example.myumkm.ui.camera.CameraActivity
 import com.example.myumkm.ui.camera.CameraActivity.Companion.CAMERAX_RESULT
 import com.example.myumkm.util.ImageClassifierHelper
-import com.example.myumkm.util.arrayOfMoneyIndex
-import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
-import org.tensorflow.lite.task.vision.classifier.Classifications
-import java.text.NumberFormat
+import com.example.myumkm.util.arrayOfProduct
 
 class LegalActivity : AppCompatActivity() {
 
@@ -61,6 +57,8 @@ class LegalActivity : AppCompatActivity() {
         }
 
         imageClassifierHelper = ImageClassifierHelper(
+            sizeObject = arrayOfProduct.classNames.size,
+            modelName = "product_model.tflite",
             context = this,
             imageClassifierListener = object : ImageClassifierHelper.ClassifierListener {
                 override fun onError(error: String) {
@@ -68,19 +66,6 @@ class LegalActivity : AppCompatActivity() {
                         Toast.makeText(this@LegalActivity, error, Toast.LENGTH_SHORT).show()
                     }
                 }
-//                override fun onResults(results: Array<FloatArray>?, inferenceTime: Long) {
-//                    runOnUiThread {
-//                        results?.let { tensorBuffer ->
-//                            // Handle the results here
-////                            val array = tensorBuffer.floatArray.withIndex().maxBy { it.value }
-////                            val maxIndex = array.index
-////                            val maxValue = array.value
-////                            Toast.makeText(this@LegalActivity, "Results: ${arrayOfMoneyIndex.classNames[maxIndex]} and have value ${maxValue}, Inference Time: $inferenceTime", Toast.LENGTH_SHORT).show()
-////                            // For example, you can print the results:
-//////                            Toast.makeText(this@LegalActivity, "Results: ${tensorBuffer.floatArray[0]}, Inference Time: $inferenceTime", Toast.LENGTH_SHORT).show()
-//                        }
-//                    }
-//                }
                 override fun onResults(results: Array<FloatArray>?, inferenceTime: Long) {
                     runOnUiThread {
                         results?.let { tensorBuffer ->
@@ -89,7 +74,7 @@ class LegalActivity : AppCompatActivity() {
                             val maxValue = tensorBuffer[0][maxIndex]
 
                             // Display the results in a Toast message
-                            Toast.makeText(this@LegalActivity, "Results: Class ${arrayOfMoneyIndex.classNames[maxIndex]} with confidence ${maxValue}, Inference Time: $inferenceTime", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@LegalActivity, "Results: Class ${arrayOfProduct.classNames[maxIndex]} with confidence ${maxValue}, Inference Time: $inferenceTime", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
@@ -132,10 +117,6 @@ class LegalActivity : AppCompatActivity() {
     private fun showLoading(isLoading: Boolean) {
         binding.progressIndicator.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
-    private fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
-
 
     private fun showImage() {
         currentImageUri?.let { uri ->

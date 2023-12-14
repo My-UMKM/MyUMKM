@@ -1,3 +1,5 @@
+import com.android.build.api.dsl.AaptOptions
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -57,6 +59,9 @@ dependencies {
 
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
+
+    // ML Kit
+    implementation("com.google.firebase:firebase-ml-model-interpreter:22.0.4")
 
     implementation("com.firebaseui:firebase-ui-firestore:7.2.0")
 

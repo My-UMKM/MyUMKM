@@ -1,6 +1,6 @@
 package com.example.myumkm.util
 
-object arrayOfMoneyIndex {
+object arrayOfMoney {
     val classNames = mapOf(
         0 to "100K Asli",
         1 to "100K Palsu",

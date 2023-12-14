@@ -8,6 +8,7 @@ import com.example.myumkm.databinding.ActivityMainBinding
 import com.example.myumkm.ui.ViewModelFactory
 import com.example.myumkm.ui.legal.LegalActivity
 import com.example.myumkm.ui.login.LoginActivity
+import com.example.myumkm.ui.money.MoneyActivity
 import com.example.myumkm.ui.section.SectionActivity
 
 class MainActivity : AppCompatActivity() {
@@ -50,7 +51,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this@MainActivity, LegalActivity::class.java))
         }
         binding.btnScanner.setOnClickListener {
-            startActivity(Intent(this@MainActivity, SectionActivity::class.java))
+            startActivity(Intent(this@MainActivity, MoneyActivity::class.java))
         }
     }
 }
