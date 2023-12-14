@@ -40,7 +40,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="120dp"
         android:layout_marginEnd="48dp"
         android:text="@string/welcome"
         android:textColor="@color/white"
@@ -102,6 +102,34 @@
             app:layout_constraintTop_toTopOf="@+id/imageView"
             tools:text="Hendra Lijaya" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/ellipse3"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentTop="false"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="-150dp"
+        android:alpha="0.2"
+        android:background="@drawable/circle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <View
+        android:id="@+id/ellipse4"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="228dp"
+        android:layout_marginBottom="-120dp"
+        android:alpha="0.2"
+        android:background="@drawable/circle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/btnChatbot"
@@ -195,34 +223,6 @@
             android:layout_gravity="center"
             android:src="@drawable/open_book" />
     </LinearLayout>
-
-    <View
-        android:id="@+id/ellipse3"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentTop="false"
-        android:layout_marginEnd="80dp"
-        android:layout_marginBottom="-150dp"
-        android:alpha="0.2"
-        android:background="@drawable/circle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <View
-        android:id="@+id/ellipse4"
-        android:layout_width="280dp"
-        android:layout_height="280dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="228dp"
-        android:layout_marginBottom="-120dp"
-        android:alpha="0.2"
-        android:background="@drawable/circle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/btnLegalitas"
