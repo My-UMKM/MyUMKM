@@ -2,6 +2,7 @@ package com.example.myumkm
 
 import android.content.Context
 import com.example.myumkm.data.entity.UserEntity
+import com.example.myumkm.data.remote.retrofit.ApiConfig
 import com.example.myumkm.data.repository.implementation.AccountRepository
 import com.example.myumkm.data.repository.implementation.ChatRepository
 import com.example.myumkm.data.repository.implementation.SectionRepository
@@ -32,6 +33,7 @@ object Injection {
     }
 
     fun provideChatRepository(): ChatRepository {
-        return ChatRepository.getInstance(Firebase.firestore)
+        val apiService = ApiConfig.getApiService()
+        return ChatRepository.getInstance(Firebase.firestore, apiService)
     }
 }

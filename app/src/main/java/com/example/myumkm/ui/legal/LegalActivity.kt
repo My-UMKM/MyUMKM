@@ -15,6 +15,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.camera.core.ExperimentalGetImage
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import com.example.myumkm.databinding.ActivityLegalBinding
@@ -23,7 +24,7 @@ import com.example.myumkm.ui.camera.CameraActivity.Companion.CAMERAX_RESULT
 import com.example.myumkm.util.ImageClassifierHelper
 import com.example.myumkm.util.arrayOfProduct
 
-class LegalActivity : AppCompatActivity() {
+@ExperimentalGetImage class LegalActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLegalBinding
 
@@ -58,7 +59,7 @@ class LegalActivity : AppCompatActivity() {
 
         imageClassifierHelper = ImageClassifierHelper(
             sizeObject = arrayOfProduct.classNames.size,
-            modelName = "product_model.tflite",
+            modelName = "Product-Image-Classification",
             context = this,
             imageClassifierListener = object : ImageClassifierHelper.ClassifierListener {
                 override fun onError(error: String) {
@@ -70,7 +71,7 @@ class LegalActivity : AppCompatActivity() {
                     runOnUiThread {
                         results?.let { tensorBuffer ->
                             // Find the index with the highest confidence score
-                            val maxIndex = tensorBuffer[0].indices.maxBy { tensorBuffer[0][it] } ?: -1
+                            val maxIndex = tensorBuffer[0].indices.maxBy { tensorBuffer[0][it] }
                             val maxValue = tensorBuffer[0][maxIndex]
 
                             // Display the results in a Toast message
@@ -83,6 +84,9 @@ class LegalActivity : AppCompatActivity() {
 
         binding.cameraXButton.setOnClickListener { startCameraX() }
         binding.galleryButton.setOnClickListener { startGallery() }
+        binding.btnLive.setOnClickListener {
+            startActivity(Intent(this@LegalActivity, LegalLiveActivity::class.java))
+        }
     }
 
     private fun startGallery() {

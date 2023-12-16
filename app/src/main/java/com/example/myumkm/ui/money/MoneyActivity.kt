@@ -55,7 +55,7 @@ class MoneyActivity : AppCompatActivity() {
 
         imageClassifierHelper = ImageClassifierHelper(
             sizeObject = arrayOfMoney.classNames.size,
-            modelName = "money_model.tflite",
+            modelName = "Money-Image-Classification",
             context = this,
             imageClassifierListener = object : ImageClassifierHelper.ClassifierListener {
                 override fun onError(error: String) {
@@ -81,6 +81,9 @@ class MoneyActivity : AppCompatActivity() {
 
         binding.cameraXButton.setOnClickListener { startCameraX() }
         binding.galleryButton.setOnClickListener { startGallery() }
+        binding.btnLive.setOnClickListener {
+            startActivity(Intent(this@MoneyActivity, MoneyLiveActivity::class.java))
+        }
     }
 
     private fun startGallery() {

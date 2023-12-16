@@ -1,14 +1,19 @@
 package com.example.myumkm.data.repository.implementation
 
+import androidx.lifecycle.liveData
 import com.example.myumkm.data.entity.ChatEntity
-import com.example.myumkm.data.repository.implementation.SectionRepository.Companion.SECTION_ID_FIELD
+import com.example.myumkm.data.remote.response.ChatResponse
+import com.example.myumkm.data.remote.retrofit.ApiService
 import com.example.myumkm.data.repository.interf.IChatRepository
 import com.example.myumkm.util.ResultState
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.google.gson.Gson
+import retrofit2.HttpException
 
 class ChatRepository(
     private val firebaseFirestore: FirebaseFirestore,
+    private val apiService: ApiService
 ): IChatRepository {
 
     override fun getChats(sectionId: String?): Query {
@@ -19,11 +24,23 @@ class ChatRepository(
     }
 
     override fun insertChat(chatEntity: ChatEntity, result: (ResultState<String>) -> Unit) {
-        firebaseFirestore.collection(CHAT_COLLECTION)
-            .add(chatEntity)
+        val docRef = firebaseFirestore.collection(CHAT_COLLECTION).document()
+        chatEntity.id = docRef.id
+        docRef.set(chatEntity)
             .addOnSuccessListener {
+                liveData {
+                    try {
+                        val successResponse = apiService.predict(chatEntity.chatContent!!)
+                        chatEntity.chatResponse = successResponse.responseText
+//                        emit(ResultState.Success(successResponse))
+                        updateChat()
+                    } catch (e: HttpException) {
+                        val errorBody = e.response()?.errorBody()?.string()
+                        emit(ResultState.Error("Error"))
+                    }
+                }
                 result.invoke(
-                    ResultState.Success(it.id)
+                    ResultState.Success(docRef.id)
                 )
             }
             .addOnFailureListener {
@@ -61,9 +78,10 @@ class ChatRepository(
         private var instance: ChatRepository? = null
         fun getInstance(
             firebaseFirestore: FirebaseFirestore,
+            apiService: ApiService
         ): ChatRepository =
             instance ?: synchronized(this) {
-                instance ?: ChatRepository(firebaseFirestore)
+                instance ?: ChatRepository(firebaseFirestore, apiService)
             }
     }
 }

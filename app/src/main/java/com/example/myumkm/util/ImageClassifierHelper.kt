@@ -2,19 +2,25 @@ package com.example.myumkm.util
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.ImageFormat
+import android.graphics.Rect
+import android.graphics.YuvImage
+import android.media.Image
 import android.os.SystemClock
 import android.util.Log
-import com.example.myumkm.ml.MoneyModel
+import androidx.camera.core.ImageProxy
+import com.google.firebase.ml.modeldownloader.CustomModel
+import com.google.firebase.ml.modeldownloader.CustomModelDownloadConditions
+import com.google.firebase.ml.modeldownloader.DownloadType
+import com.google.firebase.ml.modeldownloader.FirebaseModelDownloader
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.Interpreter
-import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
-import java.io.FileInputStream
-import java.nio.ByteBuffer
-import java.nio.channels.FileChannel
+import java.io.ByteArrayOutputStream
 
 class ImageClassifierHelper(
-    var threshold: Float = 0.1f,
+    var threshold: Float = 0f,
     var maxResults: Int = 3,
     var numThreads: Int = 4,
     var modelName: String,
@@ -36,22 +42,27 @@ class ImageClassifierHelper(
         setupModel()
     }
 
-    fun setupModel() {
+    private fun setupModel() {
         try {
-            val options = Interpreter.Options()
-            options.numThreads = numThreads
-            val assetManager = context.assets
-            val model = assetManager.openFd(modelName)
-            val inputStream = model.createInputStream()
-            val fileChannel = FileInputStream(inputStream.fd).channel
-            val startOffset = model.startOffset
-            val declaredLength = model.declaredLength
-            val fileDescriptor = fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength)
-            interpreter = Interpreter(fileDescriptor, options)
+            val conditions = CustomModelDownloadConditions.Builder()
+                .requireWifi()
+                .build()
+
+            FirebaseModelDownloader.getInstance().getModel(modelName, DownloadType.LOCAL_MODEL_UPDATE_IN_BACKGROUND, conditions)
+                .addOnSuccessListener { customModel: CustomModel ->
+                    val options = Interpreter.Options()
+                    options.numThreads = numThreads
+                    val modelFile = customModel.file
+                    if (modelFile != null) {
+                        interpreter = Interpreter(modelFile, options)
+                    }
+                }
+                .addOnFailureListener { e ->
+                    imageClassifierListener?.onError("Failed to download the model. See error logs for details.")
+                    Log.e("ImageClassifierHelper", "Failed to download the model with error: " + e.message)
+                }
         } catch (e: Exception) {
-            imageClassifierListener?.onError(
-                "Model failed to initialize. See error logs for details"
-            )
+            imageClassifierListener?.onError("Model failed to initialize. See error logs for details.")
             Log.e("ImageClassifierHelper", "TFLite failed to load model with error: " + e.message)
         }
     }
@@ -90,4 +101,5 @@ class ImageClassifierHelper(
         )
     }
 }
+
 

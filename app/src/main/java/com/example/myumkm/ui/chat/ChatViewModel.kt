@@ -32,9 +32,11 @@ class ChatViewModel(val iChatRepository: IChatRepository, private val iSectionRe
         .setQuery(iChatRepository.getChats(sectionId.value), ChatEntity::class.java)
         .build()
 
-    fun insertChat(chatEntity: ChatEntity) {
+    fun insertChat(chatUser: ChatEntity) {
         _insertChat.value = ResultState.Loading
-        iChatRepository.insertChat(chatEntity) { _insertChat.value = it }
+        iChatRepository.insertChat(chatUser) {
+            iChatRepository.updateChat()
+        }
     }
 
     fun updateChat(chatEntity: ChatEntity) {

@@ -10,6 +10,10 @@ import com.example.myumkm.ui.legal.LegalActivity
 import com.example.myumkm.ui.login.LoginActivity
 import com.example.myumkm.ui.money.MoneyActivity
 import com.example.myumkm.ui.section.SectionActivity
+import com.example.myumkm.util.toast
+import com.google.firebase.ml.modeldownloader.CustomModelDownloadConditions
+import com.google.firebase.ml.modeldownloader.DownloadType
+import com.google.firebase.ml.modeldownloader.FirebaseModelDownloader
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -53,5 +57,21 @@ class MainActivity : AppCompatActivity() {
         binding.btnScanner.setOnClickListener {
             startActivity(Intent(this@MainActivity, MoneyActivity::class.java))
         }
+
+        val conditions = CustomModelDownloadConditions.Builder()
+            .requireWifi()
+            .build()
+
+        FirebaseModelDownloader.getInstance()
+            .getModel("Product-Image-Classification", DownloadType.LOCAL_MODEL, conditions)
+            .addOnCompleteListener {
+                toast("Completed download product")
+            }
+
+        FirebaseModelDownloader.getInstance()
+            .getModel("Money-Image-Classification", DownloadType.LOCAL_MODEL, conditions)
+            .addOnCompleteListener {
+                toast("Completed download product")
+            }
     }
 }

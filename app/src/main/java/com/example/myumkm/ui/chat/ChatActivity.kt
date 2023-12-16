@@ -1,6 +1,7 @@
 package com.example.myumkm.ui.chat
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.IntentCompat
 import androidx.lifecycle.ViewModelProvider
@@ -9,6 +10,7 @@ import com.example.myumkm.data.entity.ChatEntity
 import com.example.myumkm.data.entity.SectionEntity
 import com.example.myumkm.databinding.ActivityChatBinding
 import com.example.myumkm.ui.section.SectionActivity.Companion.SECTION
+import com.example.myumkm.util.ResultState
 import com.example.myumkm.util.toast
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 
@@ -84,5 +86,32 @@ class ChatActivity : AppCompatActivity() {
     override fun onStop() {
         super.onStop()
         adapter.stopListening()
+    }
+
+    private fun setupView() {
+        viewModel.insertChat.observe(this) { state ->
+            when(state) {
+                is ResultState.Loading -> {
+                    showLoading(true)
+                }
+                is ResultState.Error -> {
+                    showLoading(false)
+                    toast(state.error)
+                }
+                is ResultState.Success -> {
+                    showLoading(false)
+                    toast(state.data)
+                }
+            }
+        }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBarChat.visibility if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    private fun sendState() {
+        adapter.setTypingState(true)
+        binding.messageEditText.text.clear()
     }
 }
