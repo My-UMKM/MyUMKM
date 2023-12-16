@@ -11,7 +11,7 @@
         android:id="@+id/rectangle2"
         android:layout_width="450dp"
         android:layout_height="150dp"
-        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
         android:layout_alignParentTop="false"
         android:layout_marginTop="-60dp"
         android:layout_marginEnd="150dp"
@@ -26,7 +26,7 @@
         android:id="@+id/rectangle3"
         android:layout_width="450dp"
         android:layout_height="150dp"
-        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
         android:layout_alignParentTop="false"
         android:layout_marginStart="150dp"
         android:layout_marginTop="-20dp"
@@ -59,18 +59,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_place_holder" />
+        app:srcCompat="@drawable/ic_place_holder"
+        android:importantForAccessibility="no" />
 
     <View
         android:id="@+id/rectangle"
-        android:layout_width="700dp"
-        android:layout_height="80dp"
-        android:layout_alignParentLeft="false"
+        android:layout_width="500dp"
+        android:layout_height="110dp"
+        android:layout_alignParentStart="false"
         android:layout_alignParentTop="false"
         android:alpha="0.95"
         android:background="@drawable/rectangle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 
@@ -80,9 +82,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="40dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="4dp"
         android:text="@string/camera_x"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnLive"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         tools:ignore="MissingConstraints" />
@@ -93,11 +95,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="45dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="4dp"
         android:elevation="2dp"
         android:scaleType="fitCenter"
         android:text="@string/gallery"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnLive"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -121,11 +123,18 @@
 
     <Button
         android:id="@+id/btnLive"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/premium"
+        android:elevation="100dp"
+        android:fontFamily="@font/outfit_medium"
         android:text="@string/premium"
+        android:textColor="@color/navy"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
