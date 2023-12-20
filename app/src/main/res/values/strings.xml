@@ -84,6 +84,74 @@
     <string name="upload">Unggah</string>
     <string name="empty_image_warning">Silakan masukkan berkas gambar terlebih dahulu.</string>
 
-    <!--    Permium     -->
+    <!--    Premium     -->
     <string name="premium">Premium</string>
+
+    <!--    FAQ     -->
+    <string name="title_faq">FAQ</string>
+    <string name="faq_desc">Frequently Asked Questions</string>
+    <string name="questionTvDisplay">Question</string>
+    <string name="answerTvDisplay">Answer</string>
+    <string name="app_tag_TvDisplay">App Tag</string>
+
+    <string-array name="data_tag">
+        <item>Shopee</item>
+        <item>Tokopedia</item>
+        <item>Facebook</item>
+        <item>DANA</item>
+    </string-array>
+
+    <!-- FAQ SHOPEE-->
+    <string-array name="question_tag_Shopee">
+        <item>Bagaimana cara membuat akun shopee?</item>
+        <item>Mengapa saya tidak bisa login ke akun Shopee saya?</item>
+        <item>Apa saja yang dilarang di jual di Shopee?</item>
+        <item>Bagaimana peraturan komunitas Shopee?</item>
+        <item>Cara membuat toko Shopee?</item>
+    </string-array>
+    <string-array name="answer_tag_Shopee">
+        <item>Anda dapat melihat cara mendaftar Shopee melalui link berikut: https://help.shopee.co.id/portal/article/72685-[Akun-Saya]-Bagaimana-cara-membuat-akun-Shopee?previousPage=search%20recommendation%20bar </item>
+        <item>Alasan anda gagal login ke akun Shopee anda karena alasan berikut: https://help.shopee.co.id/portal/article/73092-[Akun-Saya]-Mengapa-saya-tidak-bisa-login-ke-akun-Shopee-saya?previousPage=related%20articles</item>
+        <item>Anda dapat melihat kebijakan barang yang dilarang dan dibatasi melalui link berikut: https://help.shopee.co.id/portal/article/71189-Kebijakan-Barang-yang-dilarang-dan-dibatasi?previousPage=related%20articles</item>
+        <item>Peraturan komunitas dapat anda lihat di: https://help.shopee.co.id/portal/article/73507-Peraturan-Komunitas?previousPage=related%20articles</item>
+        <item>Cara membuka toko di Shopee dapat dilihat di: https://seller.shopee.co.id/edu/article/17943</item>
+    </string-array>
+
+    <!-- FAQ TOKOPEDIA-->
+    <string-array name="question_tag_Tokopedia">
+        <item>Bagaimana cara membuat akun Tokopedia?</item>
+        <item>Bagaimana cara membuat toko Tokopedia?</item>
+    </string-array>
+    <string-array name="answer_tag_Tokopedia">
+        <item>Anda dapat mendaftar di Tokopedia melalui link berikut: https://www.tokopedia.com/blog/help-cara-daftar-membuat-akun-tokopedia/</item>
+        <item>Cara membuka toko di Tokopedia dapat dilihat di: https://seller.tokopedia.com/edu/cara-buka-toko/</item>
+    </string-array>
+
+    <!-- FAQ FACEBOOK-->
+    <string-array name="question_tag_Facebook">
+        <item>Bagaimana cara membuat akun Facebook FB?</item>
+        <item>Bagaimana cara menjual di Facebook FB marketplace?</item>
+        <item>Bagaimana cara membuat halaman Facebook untuk bisnis?</item>
+        <item>Bagaimana cara mengelola bisnis Facebook FB?</item>
+    </string-array>
+    <string-array name="answer_tag_Facebook">
+        <item>Cara mendaftar ke Facebook dapat dilihat pada link berikut: https://id-id.facebook.com/help/iphone-app/188157731232424</item>
+        <item>Cara menjual barang di Facebook Marketplace: https://id-id.facebook.com/help/561376580709359</item>
+        <item>Berikut adalah cara membuat Halaman Facebook untuk bisnis: https://id-id.facebook.com/business/tools/facebook-pages/get-started</item>
+        <item>Cara membuat fitur pengelola bisnis di Facebook: https://id-id.facebook.com/business/help/1710077379203657?id=180505742745347</item>
+    </string-array>
+
+    <!-- FAQ FACEBOOK-->
+    <string-array name="question_tag_DANA">
+        <item>Bagaimana cara membuat akun DANA?</item>
+        <item>Bagaimana cara daftar akun premium Dana?</item>
+        <item>Bagaimana cara mengisi Saldo DANA?</item>
+        <item>Bagaimana cara transfer ke pengguna Dana?</item>
+    </string-array>
+    <string-array name="answer_tag_DANA">
+        <item>Membuat akun Dana dapat dilihat pada link berikut: https://www.dana.id/help-center/akun-profil/bagaimana-cara-membuat-akun-dana</item>
+        <item>Cara menjadi akun premium bisa dilihat di: https://www.dana.id/help-center/akun-profil/bagaimana-menjadi-akun-dana-premium</item>
+        <item>Cara mengisi saldo Dana dapat dilihat di:https://www.dana.id/help-center/saldo-top-up/bagaimana-mengisi-saldo-dana</item>
+        <item>Cara kirim uang ke pengguna DANA bisa dilihat di:https://www.dana.id/help-center/saldo-top-up/bagaimana-cara-kirim-uang-ke-pengguna-dana</item>
+    </string-array>
 </resources>
