@@ -72,7 +72,7 @@
     <!--    Button Main Activity-->
     <string name="cek">Cek</string>
     <string name="legalitas">Legalitas</string>
-    <string name="kualitas">Kualitas</string>
+    <string name="bahan_baku">Bahan Baku</string>
     <string name="produkmu">Produkmu!</string>
     <string name="scanner">Scanner Uang</string>
     <string name="faq">UMKM FAQ</string>

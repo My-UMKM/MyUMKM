@@ -2,6 +2,7 @@ package com.example.myumkm.ui.chat
 
 import android.os.Handler
 import android.os.Looper
+import android.text.format.DateUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,8 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myumkm.R
 import com.example.myumkm.data.entity.ChatEntity
 import com.example.myumkm.databinding.ItemMessageBinding
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
 
 class ChatAdapter(
     private val currentUserName: String?,
@@ -70,18 +69,18 @@ class ChatAdapter(
         fun bind(chat: ChatEntity, isTyping: Boolean, currentUserName: String?) {
             binding.tvUser.text = currentUserName
             binding.tvMessage.text = chat.chatContent
-            binding.tvTimestamp.text = chat.chatTimestamp.toString()
+            binding.tvTimestamp.text = DateUtils.getRelativeTimeSpanString(chat.chatTimestamp!!)
             if (chat.chatbotTimestamp != null && chat.chatResponse != null) {
                 binding.tvBot.text = "Bot"
                 binding.tvBotMessage.text = chat.chatResponse
-                binding.tvBotTimestamp.text = chat.chatbotTimestamp.toString()
+                binding.tvBotTimestamp.text = DateUtils.getRelativeTimeSpanString(chat.chatbotTimestamp!!)
                 binding.tvBot.visibility = View.VISIBLE
                 binding.tvBotMessage.visibility = View.VISIBLE
                 binding.tvBotTimestamp.visibility = View.VISIBLE
             } else if (isTyping) {
                 handler.post(typingRunnable)
                 binding.tvBot.text = "Bot"
-                binding.tvBotTimestamp.text = System.currentTimeMillis().toString()
+                binding.tvBotTimestamp.text = DateUtils.getRelativeTimeSpanString(System.currentTimeMillis())
                 binding.tvBot.visibility = View.VISIBLE
                 binding.tvBotMessage.visibility = View.VISIBLE
                 binding.tvBotTimestamp.visibility = View.VISIBLE

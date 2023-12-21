@@ -1,16 +1,11 @@
 package com.example.myumkm.ui.chat
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.myumkm.data.entity.ChatEntity
 import com.example.myumkm.data.entity.SectionEntity
 import com.example.myumkm.data.entity.UserEntity
-import com.example.myumkm.data.remote.response.ChatResponse
-import com.example.myumkm.data.repository.interf.IAccountRepository
 import com.example.myumkm.data.repository.interf.IChatRepository
 import com.example.myumkm.data.repository.interf.ISectionRepository
 import com.example.myumkm.util.ResultState

@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.IntentCompat
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myumkm.data.entity.ChatEntity
@@ -12,9 +11,6 @@ import com.example.myumkm.data.entity.SectionEntity
 import com.example.myumkm.databinding.ActivityChatBinding
 import com.example.myumkm.ui.section.SectionActivity.Companion.SECTION
 import com.example.myumkm.util.ResultState
-import com.example.myumkm.util.toast
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 
 class ChatActivity : AppCompatActivity() {
@@ -91,11 +87,9 @@ class ChatActivity : AppCompatActivity() {
                 }
                 is ResultState.Error -> {
                     showLoading(false)
-                    toast(state.error)
                 }
                 is ResultState.Success -> {
                     showLoading(false)
-                    toast(state.data)
                 }
             }
         }
