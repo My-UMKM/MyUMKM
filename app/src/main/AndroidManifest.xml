@@ -19,6 +19,15 @@
         android:theme="@style/Theme.MyUMKM"
         tools:targetApi="31">
         <activity
+            android:name=".ui.faq.FaqActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.productquality.ProductQualityLiveActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.productquality.ProductQualityActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.legal.LegalLiveActivity"
             android:exported="false" />
         <activity

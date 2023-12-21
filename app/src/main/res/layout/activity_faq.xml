@@ -4,6 +4,61 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.faq.FaqActivity">
+    tools:context=".ui.faq.FaqActivity"
+    android:background="@color/primary">
 
+    <TextView
+        android:id="@+id/tvTagUmum"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:drawableEnd="@drawable/baseline_arrow_drop_down_24"
+        android:gravity="center"
+        android:text="@string/tag_umum"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTagTokopedia"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:drawableEnd="@drawable/baseline_arrow_drop_down_24"
+        android:gravity="center"
+        android:text="@string/tag_tokopedia"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTagUmum" />
+
+    <TextView
+        android:id="@+id/tvTagShopee"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:drawableEnd="@drawable/baseline_arrow_drop_down_24"
+        android:gravity="center"
+        android:text="@string/tag_shopee"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTagTokopedia" />
+
+    <TextView
+        android:id="@+id/tvTagDana"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:drawableEnd="@drawable/baseline_arrow_drop_down_24"
+        android:gravity="center"
+        android:text="@string/tag_dana"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTagShopee" />
+
+    <TextView
+        android:id="@+id/tvTagFacebook"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:drawableEnd="@drawable/baseline_arrow_drop_down_24"
+        android:gravity="center"
+        android:text="@string/tag_facebook"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTagDana" />
 </androidx.constraintlayout.widget.ConstraintLayout>

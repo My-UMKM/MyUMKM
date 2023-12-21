@@ -40,14 +40,17 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         viewModel = ViewModelProvider(this, ViewModelFactory.getInstance(this))[LoginViewModel::class.java]
-
         setGooglePlusButtonText(binding.signInButton, getString(R.string.google))
-
-
         auth = FirebaseAuth.getInstance()
-
+        binding.loginButton.setOnClickListener {
+            if (validation()) {
+                viewModel.login(
+                    email = binding.emailEditText.text.toString(),
+                    password = binding.passwordEditText.text.toString()
+                )
+            }
+        }
         viewModel.login.observe(this) { state ->
             when(state){
                 is ResultState.Loading -> {
@@ -64,29 +67,16 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         }
-
-        binding.loginButton.setOnClickListener {
-            if (validation()) {
-                viewModel.login(
-                    email = binding.emailEditText.text.toString(),
-                    password = binding.passwordEditText.text.toString()
-                )
-            }
-        }
-
         val gso = GoogleSignInOptions
             .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
-
         googleSignInClient = GoogleSignIn.getClient(this, gso)
         auth = Firebase.auth
         binding.signInButton.setOnClickListener {
             signIn()
         }
-
-
         binding.signupAccount.setOnClickListener{
             val intentSignup = Intent(this@LoginActivity, SignupActivity::class.java)
             startActivity(intentSignup)

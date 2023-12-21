@@ -118,10 +118,6 @@ import com.example.myumkm.util.arrayOfProduct
         }
     }
 
-    private fun showLoading(isLoading: Boolean) {
-        binding.progressIndicator.visibility = if (isLoading) View.VISIBLE else View.GONE
-    }
-
     private fun showImage() {
         currentImageUri?.let { uri ->
             Log.d("Image URI", "showImage: $uri")

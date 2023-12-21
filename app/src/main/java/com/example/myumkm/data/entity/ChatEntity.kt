@@ -5,7 +5,7 @@ data class ChatEntity(
     val chatContent: String? = null,
     val chatTimestamp: Long? = null,
     var chatResponse: String? = null,
-    val chatbotTimestamp: Long? = null,
-    val isBotTyping: Boolean? = null,
-    val sectionId: String? = null
+    var chatbotTimestamp: Long? = null,
+    var isBotTyping: Boolean? = null,
+    var sectionId: String? = null
 )

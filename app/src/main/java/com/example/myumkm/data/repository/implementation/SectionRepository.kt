@@ -34,7 +34,7 @@ class SectionRepository(
     companion object {
         private const val USER_ID_FIELD = "userId"
         const val SECTION_ID_FIELD = "id"
-        private const val SECTION_COLLECTION = "sections"
+        const val SECTION_COLLECTION = "sections"
 
         @Volatile
         private var instance: SectionRepository? = null

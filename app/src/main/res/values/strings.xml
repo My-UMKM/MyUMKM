@@ -72,9 +72,10 @@
     <!--    Button Main Activity-->
     <string name="cek">Cek</string>
     <string name="legalitas">Legalitas</string>
+    <string name="kualitas">Kualitas</string>
     <string name="produkmu">Produkmu!</string>
     <string name="scanner">Scanner Uang</string>
-    <string name="faq">UMKM\nFAQ</string>
+    <string name="faq">UMKM FAQ</string>
     <string name="title_activity_legal">LegalActivity</string>
 
     <!--    This just usenow-->
@@ -86,4 +87,11 @@
 
     <!--    Permium     -->
     <string name="premium">Premium</string>
+
+    <string name="tag_umum">Umum</string>
+    <string name="tag_shopee">Shopee</string>
+    <string name="tag_tokopedia">Tokopedia</string>
+    <string name="tag_dana">Dana</string>
+    <string name="tag_facebook">Facebook</string>
+
 </resources>

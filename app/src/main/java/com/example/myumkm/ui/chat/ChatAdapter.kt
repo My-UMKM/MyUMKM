@@ -1,5 +1,7 @@
 package com.example.myumkm.ui.chat
 
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,11 +13,20 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 
 class ChatAdapter(
-    options: FirestoreRecyclerOptions<ChatEntity>,
     private val currentUserName: String?,
     private val onItemInserted: () -> Unit,
-): FirestoreRecyclerAdapter<ChatEntity, ChatAdapter.ViewHolder>(options) {
+): RecyclerView.Adapter<ChatAdapter.ViewHolder>() {
     private var isLastItemTyping = false
+
+    private var chatList: List<ChatEntity> = listOf()
+
+    fun updateChats(newChats: List<ChatEntity>) {
+        chatList = newChats
+        notifyDataSetChanged()
+        onItemInserted()
+    }
+
+    override fun getItemCount() = chatList.size
 
     init {
         registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
@@ -38,11 +49,24 @@ class ChatAdapter(
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int, model: ChatEntity) {
-        holder.bind(model, position == itemCount - 1 && isLastItemTyping, currentUserName)
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val chatEntity = chatList[position]
+        holder.bind(chatEntity, position == itemCount - 1 && isLastItemTyping, currentUserName)
     }
 
     class ViewHolder(private val binding: ItemMessageBinding) : RecyclerView.ViewHolder(binding.root) {
+        private val handler = Handler(Looper.getMainLooper())
+        private val typingRunnable = object : Runnable {
+            private var dotCount = 0
+
+            override fun run() {
+                val dots = ".".repeat(dotCount)
+                binding.tvBotMessage.text = "typing$dots"
+
+                dotCount = (dotCount % 3) + 1
+                handler.postDelayed(this, 200)
+            }
+        }
         fun bind(chat: ChatEntity, isTyping: Boolean, currentUserName: String?) {
             binding.tvUser.text = currentUserName
             binding.tvMessage.text = chat.chatContent
@@ -55,13 +79,14 @@ class ChatAdapter(
                 binding.tvBotMessage.visibility = View.VISIBLE
                 binding.tvBotTimestamp.visibility = View.VISIBLE
             } else if (isTyping) {
+                handler.post(typingRunnable)
                 binding.tvBot.text = "Bot"
-                binding.tvBotMessage.text = "typing..."
                 binding.tvBotTimestamp.text = System.currentTimeMillis().toString()
                 binding.tvBot.visibility = View.VISIBLE
                 binding.tvBotMessage.visibility = View.VISIBLE
                 binding.tvBotTimestamp.visibility = View.VISIBLE
             } else {
+                handler.removeCallbacks(typingRunnable)
                 binding.tvBot.visibility = View.GONE
                 binding.tvBotMessage.visibility = View.GONE
                 binding.tvBotTimestamp.visibility = View.GONE

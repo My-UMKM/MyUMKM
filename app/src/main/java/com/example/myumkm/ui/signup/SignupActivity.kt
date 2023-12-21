@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.camera.core.ExperimentalGetImage
 import androidx.lifecycle.ViewModelProvider
 import com.example.myumkm.data.entity.UserEntity
 import com.example.myumkm.ui.main.MainActivity
@@ -14,7 +15,7 @@ import com.example.myumkm.util.ResultState
 import com.example.myumkm.util.isValidEmail
 import com.example.myumkm.util.toast
 
-class SignupActivity : AppCompatActivity() {
+@ExperimentalGetImage class SignupActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignupBinding
     private lateinit var viewModel: SignupViewModel
@@ -23,9 +24,7 @@ class SignupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySignupBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         viewModel = ViewModelProvider(this, ViewModelFactory.getInstance(this))[SignupViewModel::class.java]
-
         viewModel.register.observe(this) { state ->
             when(state){
                 is ResultState.Loading -> {
@@ -43,7 +42,6 @@ class SignupActivity : AppCompatActivity() {
                 }
             }
         }
-
         binding.signupButton.setOnClickListener {
             if (validation()) {
                 viewModel.register(
@@ -53,7 +51,6 @@ class SignupActivity : AppCompatActivity() {
                 )
             }
         }
-
         binding.loginAccount.setOnClickListener{
             val intentSignup = Intent(this@SignupActivity, LoginActivity::class.java)
             startActivity(intentSignup)

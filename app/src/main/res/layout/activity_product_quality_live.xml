@@ -4,6 +4,68 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#83AFF0"
     tools:context=".ui.productquality.ProductQualityLiveActivity">
+
+    <View
+        android:id="@+id/rectangle2"
+        android:layout_width="450dp"
+        android:layout_height="150dp"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentTop="false"
+        android:layout_marginTop="-60dp"
+        android:layout_marginEnd="150dp"
+        android:alpha="0.65"
+        android:background="@drawable/rectangle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <View
+        android:id="@+id/rectangle3"
+        android:layout_width="450dp"
+        android:layout_height="150dp"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentTop="false"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="-20dp"
+        android:alpha="0.6"
+        android:background="@drawable/rectangle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/tvResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:lines="3"
+        android:maxLines="3"
+        android:padding="8dp"
+        android:textColor="@color/navy"
+        android:fontFamily="@font/outfit_semibold"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Result" />
+
+    <androidx.camera.view.PreviewView
+        android:id="@+id/viewFinder"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="155dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvResult"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+    </androidx.camera.view.PreviewView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

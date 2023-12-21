@@ -7,6 +7,70 @@
     android:background="@color/primary"
     tools:context=".ui.main.MainActivity">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/btnLegalitas"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/rounded_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnChatbot">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="37dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cek"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.074"
+            app:srcCompat="@drawable/law_court" />
+
+        <TextView
+            android:id="@+id/cek"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/cek"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/legalitas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/legalitas"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cek" />
+
+        <TextView
+            android:id="@+id/produkmu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/produkmu"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/legalitas" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <View
         android:id="@+id/ellipse1"
         android:layout_width="400dp"
@@ -147,22 +211,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
-<!--    <Button-->
-<!--        android:id="@+id/btnScanner"-->
-<!--        android:layout_width="80dp"-->
-<!--        android:layout_height="80dp"-->
-<!--        android:layout_marginTop="24dp"-->
-<!--        android:background="@drawable/rounded_button"-->
-<!--        android:paddingLeft="16dp"-->
-<!--        android:paddingRight="16dp"-->
-<!--        android:text="@string/scanner"-->
-<!--        android:textAlignment="center"-->
-<!--        android:textSize="10sp"-->
-<!--        app:icon="@drawable/cash"-->
-<!--        app:iconGravity="textBottom"-->
-<!--        app:layout_constraintEnd_toEndOf="@+id/btnChatbot"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/btnChatbot"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/btnChatbot" />-->
+    <Button
+        android:id="@+id/btnFaq"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="48dp"
+        android:background="@drawable/rounded_button"
+        android:backgroundTint="@color/navy"
+        android:drawableLeft="@drawable/open_book_30"
+        android:text="@string/faq"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnScanner" />
 
     <LinearLayout
         android:id="@+id/btnScanner"
@@ -194,48 +257,48 @@
             android:src="@drawable/cash" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/btnFaq"
+<!--    <LinearLayout-->
+<!--        android:id="@+id/btnFaq"-->
+<!--        android:layout_width="80dp"-->
+<!--        android:layout_height="80dp"-->
+<!--        android:layout_marginTop="24dp"-->
+<!--        android:background="@drawable/rounded_button"-->
+<!--        android:orientation="vertical"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/btnScanner">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:gravity="center"-->
+<!--            android:paddingStart="16dp"-->
+<!--            android:paddingEnd="16dp"-->
+<!--            android:text="@string/faq"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="10sp"-->
+<!--            android:textStyle="bold" />-->
+
+<!--        <ImageView-->
+<!--            android:layout_width="25dp"-->
+<!--            android:layout_height="25dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:src="@drawable/open_book" />-->
+<!--    </LinearLayout>-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/btnQuality"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="48dp"
         android:background="@drawable/rounded_button"
-        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnChatbot">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="center"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:text="@string/faq"
-            android:textColor="@color/white"
-            android:textSize="10sp"
-            android:textStyle="bold" />
-
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_gravity="center"
-            android:src="@drawable/open_book" />
-    </LinearLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/btnLegalitas"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/rounded_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnChatbot">
-
-        <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imageView3"
             android:layout_width="37dp"
             android:layout_height="26dp"
             android:layout_marginStart="10dp"
@@ -243,13 +306,13 @@
             android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/cek"
+            app:layout_constraintStart_toEndOf="@+id/tes"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.074"
-            app:srcCompat="@drawable/law_court" />
+            app:srcCompat="@drawable/quality" />
 
         <TextView
-            android:id="@+id/cek"
+            android:id="@+id/tes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
@@ -262,20 +325,20 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/legalitas"
+            android:id="@+id/kualitas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:layout_marginTop="4dp"
-            android:text="@string/legalitas"
+            android:text="@string/kualitas"
             android:textColor="@color/white"
             android:textSize="10sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cek" />
+            app:layout_constraintTop_toBottomOf="@+id/tes" />
 
         <TextView
-            android:id="@+id/produkmu"
+            android:id="@+id/produkku"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
@@ -285,7 +348,7 @@
             android:textSize="10sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/legalitas" />
+            app:layout_constraintTop_toBottomOf="@+id/kualitas" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.IntentCompat
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myumkm.data.entity.ChatEntity
@@ -13,12 +14,15 @@ import com.example.myumkm.ui.section.SectionActivity.Companion.SECTION
 import com.example.myumkm.util.ResultState
 import com.example.myumkm.util.toast
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ListenerRegistration
 
 class ChatActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityChatBinding
     private lateinit var adapter: ChatAdapter
     private lateinit var viewModel: ChatViewModel
+    private var listenerRegistration: ListenerRegistration? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityChatBinding.inflate(layoutInflater)
@@ -32,14 +36,35 @@ class ChatActivity : AppCompatActivity() {
             viewModel.sectionId.postValue(section.id)
         }
 
-        val options = FirestoreRecyclerOptions.Builder<ChatEntity>()
-            .setQuery(viewModel.iChatRepository.getChats(viewModel.sectionId.value), ChatEntity::class.java)
-            .build()
-        adapter = ChatAdapter(options, viewModel.user.name) {
+        adapter = ChatAdapter(viewModel.user.name) {
             binding.rvChat.scrollToPosition(adapter.itemCount - 1)
         }
-        binding.rvChat.layoutManager = LinearLayoutManager(this)
         binding.rvChat.adapter = adapter
+        binding.rvChat.layoutManager = LinearLayoutManager(this)
+
+        viewModel.sectionId.observe(this) { sectionId ->
+            // Remove the old listener if one exists
+            listenerRegistration?.remove()
+
+            // Add a new listener for the new sectionId
+            if (sectionId != null) {
+                listenerRegistration = viewModel.iChatRepository.getChats(sectionId)
+                    .addSnapshotListener { snapshots, error ->
+                        if (error != null) {
+                            // Handle the error
+                            return@addSnapshotListener
+                        }
+
+                        // Update the adapter with the new data
+                        val chats = snapshots?.toObjects(ChatEntity::class.java)
+                        if (chats != null) {
+                            adapter.updateChats(chats)
+                        }
+                    }
+            }
+        }
+
+        binding.rvChat.layoutManager = LinearLayoutManager(this)
 
         binding.sendButton.setOnClickListener {
             val message = ChatEntity(
@@ -50,42 +75,12 @@ class ChatActivity : AppCompatActivity() {
                 isBotTyping = true,
                 sectionId = viewModel.sectionId.value
             )
+            adapter.setTypingState(true)
+            sendState()
             viewModel.insertChat(message)
-//            adapter.setTypingState(true)
-//            binding.messageEditText.text.clear()
-//
-//            Handler(Looper.getMainLooper()).postDelayed({
-//                if (viewModel.sectionId.value == "") {
-//                    val section = SectionEntity(
-//                        sectionName = "Greeting",
-//                        userId = viewModel.userId
-//                    )
-//                    viewModel.sectionId.postValue(viewModel.insertSection(section))
-//                    supportActionBar?.title = section.sectionName
-//                }
-//
-//                val updatedMessage = message.copy(
-//                    chatId = chatId,
-//                    chatResponse = "Halo boi",
-//                    chatbotTimestamp = System.currentTimeMillis(),
-//                    isBotTyping = false,
-//                    sectionId = viewModel.sectionId.value
-//                )
-//                viewModel.updateChat(updatedMessage)
-//                adapter.setTypingState(false)
-//
-//            }, 2000)
+            adapter.setTypingState(false)
         }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        adapter.startListening()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        adapter.stopListening()
+        setupView()
     }
 
     private fun setupView() {
@@ -107,7 +102,7 @@ class ChatActivity : AppCompatActivity() {
     }
 
     private fun showLoading(isLoading: Boolean) {
-        binding.progressBarChat.visibility if (isLoading) View.VISIBLE else View.GONE
+        binding.progressBarChat.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     private fun sendState() {
