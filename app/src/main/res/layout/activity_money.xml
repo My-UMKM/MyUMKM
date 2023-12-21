@@ -54,13 +54,13 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="155dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="20dp"
+        android:importantForAccessibility="no"
         app:layout_constraintBottom_toTopOf="@+id/tvLabelMoney"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_place_holder"
-        android:importantForAccessibility="no" />
+        app:srcCompat="@drawable/ic_place_holder" />
 
     <View
         android:id="@+id/rectangle"
@@ -116,14 +116,17 @@
         android:id="@+id/tvLabelMoney"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="95dp"
         android:fontFamily="@font/outfit_semibold"
         android:gravity="center"
         android:textColor="@color/navy"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@id/rectangle"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="@+id/guideline" />
+        app:layout_constraintBottom_toTopOf="@+id/btnLive"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.897"
+        tools:text="5K Asli" />
 
     <Button
         android:id="@+id/btnLive"

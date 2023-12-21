@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="#83AFF0"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.productquality.ProductQualityActivity">
@@ -113,10 +114,17 @@
         android:id="@+id/tvLabelQuality"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/outfit_semibold"
         android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/cameraXButton"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="@+id/guideline" />
+        android:textColor="@color/navy"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnLive"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.897"
+        tools:text="Kayu Manis" />
 
     <Button
         android:id="@+id/btnLive"

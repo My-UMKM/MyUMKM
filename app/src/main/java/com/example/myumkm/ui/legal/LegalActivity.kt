@@ -21,7 +21,9 @@ import com.example.myumkm.databinding.ActivityLegalBinding
 import com.example.myumkm.ui.camera.CameraActivity
 import com.example.myumkm.ui.camera.CameraActivity.Companion.CAMERAX_RESULT
 import com.example.myumkm.util.ImageClassifierHelper
+import com.example.myumkm.util.arrayOfMoney
 import com.example.myumkm.util.arrayOfProduct
+import com.example.myumkm.util.toast
 
 @ExperimentalGetImage class LegalActivity : AppCompatActivity() {
 
@@ -69,12 +71,13 @@ import com.example.myumkm.util.arrayOfProduct
                 override fun onResults(results: Array<FloatArray>?, inferenceTime: Long) {
                     runOnUiThread {
                         results?.let { tensorBuffer ->
-                            // Find the index with the highest confidence score
                             val maxIndex = tensorBuffer[0].indices.maxBy { tensorBuffer[0][it] }
                             val maxValue = tensorBuffer[0][maxIndex]
-
-                            // Display the results in a Toast message
-                            Toast.makeText(this@LegalActivity, "Results: Class ${arrayOfProduct.classNames[maxIndex]} with confidence ${maxValue}, Inference Time: $inferenceTime", Toast.LENGTH_SHORT).show()
+                            if (maxValue >= 0.8) binding.tvLabelLegal.text = arrayOfProduct.classNames[maxIndex]
+                            else {
+                                toast("Foto ulang dari angle lain")
+                                currentImageUri = null
+                            }
                         }
                     }
                 }
