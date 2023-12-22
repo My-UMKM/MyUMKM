@@ -5,10 +5,12 @@ import com.example.myumkm.data.entity.UserEntity
 import com.example.myumkm.data.repository.interf.IAccountRepository
 import com.example.myumkm.util.ResultState
 import com.example.myumkm.util.SharedPrefConstants
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.Gson
 
@@ -102,6 +104,24 @@ class AccountRepository(
                 }
             }.addOnFailureListener {
                 result.invoke(ResultState.Error("Authentication failed, Check email and password"))
+            }
+    }
+
+    override fun firebaseAuthWithGoogle(acct: GoogleSignInAccount, result: (ResultState<String>) -> Unit) {
+        val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
+        firebaseAuth.signInWithCredential(credential)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    storeSession(id = task.result?.user?.uid ?: "") { it ->
+                        if (it == null) {
+                            result.invoke(ResultState.Error("Failed to store local session"))
+                        } else {
+                            result.invoke(ResultState.Success("Login successfully!"))
+                        }
+                    }
+                } else {
+                    result.invoke(ResultState.Error("Authentication failed"))
+                }
             }
     }
 

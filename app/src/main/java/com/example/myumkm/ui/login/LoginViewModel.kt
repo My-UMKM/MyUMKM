@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.example.myumkm.data.entity.UserEntity
 import com.example.myumkm.data.repository.implementation.AccountRepository
 import com.example.myumkm.util.ResultState
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 
 class LoginViewModel(private val accountRepository: AccountRepository): ViewModel() {
     private val _login = MutableLiveData<ResultState<String>>()
@@ -17,7 +18,8 @@ class LoginViewModel(private val accountRepository: AccountRepository): ViewMode
         accountRepository.loginUser(email, password) { _login.value = it }
     }
 
-    fun getSession(result: (UserEntity?) -> Unit){
-        accountRepository.getSession(result)
+    fun loginGoogle(acct: GoogleSignInAccount) {
+        _login.value = ResultState.Loading
+        accountRepository.firebaseAuthWithGoogle(acct) { _login.value = it }
     }
 }
